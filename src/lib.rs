@@ -26,7 +26,6 @@ pub fn vec_eq<T: PartialEq>(v1 : &Vec<T>, v2 : &Vec<T>) -> bool {
    } true
 }
 
-
 pub fn is_number_like(s : &str) -> bool {
    //Checks if first char is numeric. The rest of number might
    //be badly formatted (like 032d):
@@ -62,21 +61,15 @@ pub fn is_float(s : &str) -> bool {
    } true
 }
 
-pub fn s_to_f64(s : &str) -> f64 {
-   s.parse::<f64>().unwrap()
-}
+pub fn s_to_f64(s : &str) -> f64 { s.parse::<f64>().unwrap() }
+pub fn s_to_f32(s : &str) -> f32 { s.parse::<f32>().unwrap() }
+pub fn s_to_i64(s : &str) -> i64 { s.parse::<i64>().unwrap() }
+pub fn so_to_usize(s : &str) -> usize { s.parse::<usize>().unwrap() }
 
-pub fn s_to_i64(s : &str) -> i64 {
-   s.parse::<i64>().unwrap()
-}
-
-pub fn s_to_f32(s : &str) -> f32 {
-   s.parse::<f32>().unwrap()
-}
-
-pub fn so_to_usize(s : &str) -> usize {
-   s.parse::<usize>().unwrap()
-}
+use std::str::FromStr;
+pub fn from_str<T : FromStr>(s : &str)
+-> Result<T, <T as FromStr>::Err>
+{ s.parse::<T>() }
 
 //slice_str("hello", 1, 3) => "ell"
 pub fn slice_str(s: &str, start: usize, end: usize) -> String {
@@ -174,4 +167,22 @@ pub fn read_bin_file(f_path : &str) -> Result<Vec<u8>, std::io::Error> {
       Err(why) => Err(why)
    }
 }
+
+
+pub fn pow(n : f64, p : u8) -> f64 {
+   let mut ret = 1.0;
+   for _ in 0..p {
+      ret *= n;
+   } ret
+}
+
+pub fn round(n : f64, precision : u8) -> f64 {
+   let p = pow(10.0, precision);
+   (n * p).round() / p
+}
+
+
+
+
+
 
