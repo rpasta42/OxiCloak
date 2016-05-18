@@ -116,18 +116,19 @@ pub fn is_none<T>(x : Option<T>) -> bool {
    if let Some(_) = x { false } else { true }
 }
 
-pub fn is_ok<T>(x : Option<T>) -> bool {
+pub fn is_ok<T, Y>(x : Result<T, Y>) -> bool {
    if let Ok(_) = x { true } else { false }
 }
 
 //[0, 1, Some(0.1)] => [0, 0.1, 0.2, ..., 1]
 //[0, 5, None] => [0, 1, 2, ..., 5]
 //[5, 2, -2] => [5, 3]
+#[allow(unused_variables)]
 pub fn range<T>(start : T, end : T, step : Option<T>) -> Vec<T> {
    Vec::new()
 }
 
-fn float_range(start : f32, step : f32, end : f32) -> Vec<f32> {
+pub fn float_range(start : f32, step : f32, end : f32) -> Vec<f32> {
    let mut i = start;
    let mut ret = Vec::new();
    while i < end {
@@ -142,7 +143,7 @@ pub fn read_file(path_str : &str) -> Result<String, std::io::Error> {
    use std::io::prelude::*;
    use std::fs::File;
    use std::path::Path;
-   use std::error::Error;
+   //use std::error::Error;
 
    //println!("loading file {}", path_str);
    let path = Path::new(path_str);
