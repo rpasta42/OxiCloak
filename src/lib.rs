@@ -64,7 +64,7 @@ pub fn is_float(s : &str) -> bool {
 pub fn s_to_f64(s : &str) -> f64 { s.parse::<f64>().unwrap() }
 pub fn s_to_f32(s : &str) -> f32 { s.parse::<f32>().unwrap() }
 pub fn s_to_i64(s : &str) -> i64 { s.parse::<i64>().unwrap() }
-pub fn so_to_usize(s : &str) -> usize { s.parse::<usize>().unwrap() }
+pub fn s_to_usize(s : &str) -> usize { s.parse::<usize>().unwrap() }
 
 use std::str::FromStr;
 pub fn from_str<T : FromStr>(s : &str)
